@@ -16,3 +16,6 @@ El sistema se desarrollará utilizando el framework Django, permitiendo la gesti
 
 ## Diagrama de clases 
 
+## Capturas de la Interfaz
+![Interfaz](https://github.com/Dan-San837/Farmacias/blob/db41f1f8ed02e491f9e67e465ac57bfbc5a13906/Captura%20de%20pantalla%202025-01-26%20220019.png)
+![](https://github.com/Dan-San837/Farmacias/blob/db41f1f8ed02e491f9e67e465ac57bfbc5a13906/Captura%20de%20pantalla%202025-01-26%20220122.png)
