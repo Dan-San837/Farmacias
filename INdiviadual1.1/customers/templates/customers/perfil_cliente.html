@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Perfil de Cliente{% endblock %}
+
+{% block content %}
+<h1 class="text-xl font-bold">Perfil del Cliente</h1>
+
+<div class="bg-white shadow-md rounded p-6">
+    <p><strong>Nombre:</strong> {{ cliente.nombre }}</p>
+    <p><strong>Teléfono:</strong> {{ cliente.telefono }}</p>
+    <p><strong>Dirección:</strong> {{ cliente.direccion }}</p>
+    <p><strong>Correo Electrónico:</strong> {{ cliente.email }}</p>
+</div>
+<a href="{% url 'customers:lista_clientes' %}" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700 mt-4 inline-block">Volver</a>
+
+{% endblock %}

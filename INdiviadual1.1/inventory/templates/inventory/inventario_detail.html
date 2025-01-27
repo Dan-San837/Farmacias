@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalles del Medicamento{% endblock %}
+
+{% block content %}
+<h2 class="text-xl font-bold mb-4">Detalles del Medicamento</h2>
+
+<div class="bg-white shadow-md rounded p-6">
+    <p><strong>Nombre:</strong> {{ medicamento.nombre }}</p>
+    <p><strong>Stock:</strong> {{ medicamento.stock }}</p>
+    <p><strong>Precio:</strong> ${{ medicamento.precio }}</p>
+    <p><strong>Descripción:</strong> {{ medicamento.descripcion }}</p>
+</div>
+
+<a href="{% url 'inventory:inventario_list' %}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 mt-4 inline-block">Volver</a>
+{% endblock %}

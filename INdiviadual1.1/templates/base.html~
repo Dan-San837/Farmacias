@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <title>{% block title %}Farmacias Cuxibamba{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <h1>Farmacias Cuxibamba</h1>
+        <nav>
+            <a href="{% url 'inventory:inventario_list' %}">Inventario</a>
+            <a href="{% url 'sales:ventas_list' %}">Ventas</a>
+            <a href="{% url 'customers:perfil_cliente' %}">Mi Perfil</a>
+            <a href="{% url 'accounts:login' %}">Iniciar Sesión</a>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>
