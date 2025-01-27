@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Farmacias Cuxibamba{% endblock %}</title>
+    <!-- Importar Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-800">
+    <!-- Encabezado -->
+    <header class="bg-blue-600 text-white py-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">Farmacias Cuxibamba</h1>
+            <nav>
+                <a href="{% url 'inventory:inventario_list' %}" class="px-4 py-2 hover:underline">Inventario</a>
+                <a href="{% url 'sales:ventas_list' %}" class="px-4 py-2 hover:underline">Ventas</a>
+                <a href="{% url 'customers:perfil_cliente' %}" class="px-4 py-2 hover:underline">Mi Perfil</a>
+                <a href="{% url 'accounts:login' %}" class="px-4 py-2 hover:underline">Iniciar Sesión</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenido -->
+    <main class="container mx-auto py-8">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white text-center py-4">
+        <p>&copy; 2025 Farmacias Cuxibamba. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
