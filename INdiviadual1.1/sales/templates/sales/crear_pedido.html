@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Crear Pedido{% endblock %}
+
+{% block content %}
+<div class="container mx-auto p-6">
+    <h1 class="text-xl font-bold mb-4">Crear Pedido</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label for="opcion_entrega" class="block text-sm font-medium">Opción de Entrega:</label>
+        {{ form.opcion_entrega }}
+
+        <div id="sucursal-field" style="display: none;">
+            <label for="sucursal_entrega" class="block text-sm font-medium">Sucursal de Entrega:</label>
+            {{ form.sucursal_entrega }}
+        </div>
+
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Confirmar Pedido</button>
+    </form>
+</div>
+
+<script>
+    // Mostrar el campo de sucursal solo si la opción de entrega es "envio"
+    const opcionEntrega = document.getElementById('id_opcion_entrega');
+    const sucursalField = document.getElementById('sucursal-field');
+
+    opcionEntrega.addEventListener('change', function() {
+        if (this.value === 'envio') {
+            sucursalField.style.display = 'block';
+        } else {
+            sucursalField.style.display = 'none';
+        }
+    });
+</script>
+{% endblock %}

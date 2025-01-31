@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block title %}Registro{% endblock %}
+
+{% block content %}
+<div class="flex items-center justify-center h-screen">
+    <div class="w-full max-w-md bg-white shadow-md rounded-2xl p-8">
+        <h1 class="text-2xl font-bold text-center mb-6">Registro</h1>
+        <form method="POST">
+            {% csrf_token %}
+
+            <!-- Nombre de Usuario -->
+            <div class="mb-4">
+                <label for="username" class="block text-sm font-medium text-gray-700">Nombre de Usuario</label>
+                {{ form.username }}
+            </div>
+
+            <!-- Nombre -->
+            <div class="mb-4">
+                <label for="first_name" class="block text-sm font-medium text-gray-700">Nombre</label>
+                {{ form.first_name }}
+            </div>
+
+            <!-- Apellido -->
+            <div class="mb-4">
+                <label for="last_name" class="block text-sm font-medium text-gray-700">Apellido</label>
+                {{ form.last_name }}
+            </div>
+
+            <!-- Email -->
+            <div class="mb-4">
+                <label for="email" class="block text-sm font-medium text-gray-700">Correo electrónico</label>
+                {{ form.email }}
+            </div>
+
+            <!-- Contraseña -->
+            <div class="mb-4">
+                <label for="password" class="block text-sm font-medium text-gray-700">Contraseña</label>
+                {{ form.password }}
+            </div>
+
+            <!-- Confirmar Contraseña -->
+            <div class="mb-4">
+                <label for="confirmar_password" class="block text-sm font-medium text-gray-700">Confirmar Contraseña</label>
+                {{ form.confirmar_password }}
+            </div>
+
+            <!-- Seleccionar Rol -->
+            <div class="mb-6">
+                <label for="rol" class="block text-sm font-medium text-gray-700">Rol</label>
+                {{ form.rol }}
+            </div>
+
+            <!-- Sucursal (solo para empleados) -->
+            <div class="mb-6" id="sucursal_field" style="display: none;">
+                <label for="id_sucursal" class="block text-sm font-medium text-gray-700">Sucursal</label>
+
+                {{ form.sucursal }}
+            </div>
+
+<!--
+<label for="id_sucursal">Selecciona una sucursal:</label>
+<select name="sucursal" id="id_sucursal">
+<option value="">-- Selecciona una sucursal --</option>
+{% for sucursal in sucursales %}
+<option value="{{ sucursal.id }}">{{ sucursal.nombre }}</option>
+{% endfor %}
+
+</select>
+-->
+
+            <!-- Botones -->
+            <div class="flex justify-between items-center">
+                <button type="submit"
+                    class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-200">
+                    Registrar
+                </button>
+            </div>
+
+
+
+
+
+            <div class="mt-4 text-center">
+                <button type="button" onclick="history.back()"
+                    class="text-blue-600 hover:underline">Volver a la página anterior</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Mostrar el campo "Sucursal" solo si el usuario selecciona el rol "Empleado de Sucursal"
+    const rolField = document.getElementById('id_rol');
+    const sucursalField = document.getElementById('sucursal_field');
+
+    // Asegúrate de que el campo sucursal esté inicialmente oculto
+    sucursalField.style.display = 'none';
+
+    rolField.addEventListener('change', function() {
+        if (this.value === 'empleado') {
+            sucursalField.style.display = 'block';
+        } else {
+            sucursalField.style.display = 'none';
+        }
+    });
+</script>
+
+{% endblock %}
