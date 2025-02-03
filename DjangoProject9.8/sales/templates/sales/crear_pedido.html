@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Crear Pedido{% endblock %}
+
+{% block content %}
+<div class="container mx-auto p-6">
+    <h1 class="text-xl font-bold mb-4">Crear Pedido</h1>
+
+    {% if error %}
+        <p class="text-red-500">{{ error }}</p>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="mb-4">
+            <label class="block text-sm font-medium">Opción de Entrega:</label>
+            {{ form.opcion_entrega }}
+        </div>
+
+        <div class="mb-4" id="sucursal-field" style="display: none;">
+            <label class="block text-sm font-medium">Sucursal de Origen:</label>
+            {{ form.sucursal_entrega }}
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-sm font-medium">Selecciona los medicamentos:</label>
+            {{ form.medicamentos }}
+        </div>
+
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Confirmar Pedido</button>
+    </form>
+</div>
+
+<script>
+    const opcionEntrega = document.getElementById('id_opcion_entrega');
+    const sucursalField = document.getElementById('sucursal-field');
+
+    opcionEntrega.addEventListener('change', function() {
+        if (this.value === 'envio') {
+            sucursalField.style.display = 'block';
+        } else {
+            sucursalField.style.display = 'none';
+        }
+    });
+</script>
+{% endblock %}

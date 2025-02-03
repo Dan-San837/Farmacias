@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalle del Cliente{% endblock %}
+
+{% block content %}
+<h1 class="text-xl font-bold mb-4">Detalle del Cliente</h1>
+
+<div class="bg-white shadow-md rounded p-6">
+    <p><strong>Nombre:</strong> {{ cliente.nombre }}</p>
+    <p><strong>Email:</strong> {{ cliente.email }}</p>
+    <p><strong>Teléfono:</strong> {{ cliente.telefono }}</p>
+    <p><strong>Dirección:</strong> {{ cliente.direccion }}</p>
+</div>
+
+<a href="{% url 'customers:lista_clientes' %}" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700 mt-4 inline-block">
+    Volver a la lista
+</a>
+{% endblock %}

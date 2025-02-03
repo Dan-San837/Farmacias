@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Stock{% endblock %}
+
+{% block content %}
+<h2 class="text-xl font-bold mb-4">Editar Stock</h2>
+
+<form method="post" class="bg-white shadow-md rounded p-6">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Actualizar</button>
+</form>
+
+<a href="{% url 'inventory:inventario_list' %}" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700 mt-4 inline-block">Cancelar</a>
+{% endblock %}

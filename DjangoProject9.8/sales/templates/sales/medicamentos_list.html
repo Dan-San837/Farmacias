@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-xl font-bold mb-4">Lista de Medicamentos</h1>
+<table class="table-auto border-collapse w-full mt-4">
+    <thead>
+        <tr class="bg-gray-200">
+            <th class="border px-4 py-2">Nombre</th>
+            <th class="border px-4 py-2">Descripción</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if medicamentos %}
+            {% for medicamento in medicamentos %}
+            <tr>
+                <td class="border px-4 py-2">{{ medicamento.nombre }}</td>
+                <td class="border px-4 py-2">{{ medicamento.descripcion }}</td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="2" class="border px-4 py-2 text-center">No hay medicamentos registrados.</td>
+            </tr>
+        {% endif %}
+    </tbody>
+</table>
+
+<div class="my-4">
+    <a href="{% url 'sales:index' %}" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+        Volver al Módulo de Ventas
+    </a>
+</div>
+{% endblock %}

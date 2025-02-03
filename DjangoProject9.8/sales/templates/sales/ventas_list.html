@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-xl font-bold mb-4">Historial de Ventas</h1>
+
+<!-- Filtro por sucursal -->
+<form method="GET" action="{% url 'sales:ventas_list' %}" class="mb-4">
+    <label for="sucursal">Filtrar por Sucursal:</label>
+    <select name="sucursal" id="sucursal" class="border px-2 py-1">
+        <option value="">Todas</option>
+        {% for sucursal in sucursales %}
+            <option value="{{ sucursal.id }}" {% if request.GET.sucursal == sucursal.id|stringformat:"s" %}selected{% endif %}>
+                {{ sucursal.nombre }}
+            </option>
+        {% endfor %}
+    </select>
+    <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Filtrar</button>
+</form>
+
+<table class="table-auto border-collapse w-full mt-4">
+    <thead>
+        <tr class="bg-gray-200">
+            <th class="border px-4 py-2">Cliente</th>
+            <th class="border px-4 py-2">Sucursal</th>
+            <th class="border px-4 py-2">Medicamento</th>
+            <th class="border px-4 py-2">Cantidad</th>
+            <th class="border px-4 py-2">Total</th>
+            <th class="border px-4 py-2">Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if ventas %}
+            {% for venta in ventas %}
+            {% for detalle in venta.detalles.all %}<!-- Iteramos sobre los medicamentos de cada venta -->
+            <tr>
+                <td class="border px-4 py-2">{{ venta.cliente.usuario.username }}</td>
+                <td class="border px-4 py-2">{{ venta.sucursal_origen.nombre }}</td>
+                <td class="border px-4 py-2">{{ detalle.medicamento.nombre }}</td> <!-- Mostrar medicamento -->
+                <td class="border px-4 py-2">{{ detalle.cantidad }}</td>
+                <td class="border px-4 py-2">${{ venta.total }}</td>
+                <td class="border px-4 py-2">{{ venta.estado }}</td>
+            </tr>
+            {% endfor %}
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="4" class="border px-4 py-2 text-center">No hay ventas registradas.</td>
+            </tr>
+        {% endif %}
+    </tbody>
+</table>
+
+<div class="my-4">
+    <a href="{% url 'sales:index' %}" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+        Volver al Módulo de Ventas
+    </a>
+</div>
+
+<div class="my-4">
+    <a href="{% url 'home' %}" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+        Volver al Inicio
+    </a>
+</div>
+{% endblock %}
